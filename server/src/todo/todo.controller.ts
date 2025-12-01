@@ -17,28 +17,26 @@ export class TodoController {
 
   @Post()
   create(@Body() createTodoDto: CreateTodoDto) {
-    console.log(createTodoDto);
-
     return this.todoService.create(createTodoDto);
   }
 
-  @Get()
-  findAll() {
-    return this.todoService.findAll();
+  @Get('all/:page/:limit')
+  findAll(@Param('page') page: string, @Param('limit') limit: string) {
+    return this.todoService.findAll({ page, limit });
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.todoService.findOne(+id);
+    return this.todoService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
-    return this.todoService.update(+id, updateTodoDto);
+    return this.todoService.update(id, updateTodoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.todoService.remove(+id);
+    return this.todoService.remove(id);
   }
 }

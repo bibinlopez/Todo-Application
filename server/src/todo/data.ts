@@ -1,29 +1,24 @@
 export enum TodoStatus {
   PENDING = 'pending',
-  INPROGRESS = 'inprogress',
+  PROGRESS = 'progress',
   COMPLETED = 'completed',
 }
 
-export const data: Data = {
-  todo: [
-    {
-      id: 'uuid1',
-      title: 'Reading',
-      desciption: 'reading my favorite book',
-      created_at: new Date(),
-      updated_at: new Date(),
-      status: TodoStatus.PENDING,
-    },
-  ],
-};
+export const data: Todo[] = [
+  {
+    id: 'uuid1',
+    title: 'Reading',
+    description: 'reading my favorite book',
+    status: TodoStatus.PENDING,
+    created_at: new Date(),
+  },
+];
 
-interface Data {
-  todo: {
-    id: string;
-    title: string;
-    desciption: string;
-    created_at: Date;
-    updated_at: Date;
-    status: TodoStatus;
-  }[];
+export interface Todo {
+  id: string;
+  title: string;
+  description: string;
+  status: TodoStatus;
+  created_at: Date;
+  updated_at?: Date;
 }

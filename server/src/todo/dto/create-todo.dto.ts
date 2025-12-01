@@ -2,6 +2,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsPositive,
   IsString,
 } from 'class-validator';
@@ -14,6 +15,7 @@ export class CreateTodoDto {
 
   @IsString()
   @IsNotEmpty()
+  @IsOptional()
   description: string;
 
   @IsEnum(TodoStatus)
