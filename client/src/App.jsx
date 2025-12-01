@@ -5,8 +5,6 @@ import "./App.css";
 import { Plus, ListTodo } from "lucide-react";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <main className="min-h-screen">
       <div className="mx-auto w-full px-4 py-8 max-w-5xl">
