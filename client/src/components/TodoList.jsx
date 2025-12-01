@@ -1,4 +1,5 @@
 import React from "react";
+import TodoItem from "./TodoItem";
 
 const TodoList = () => {
   return (
@@ -6,15 +7,9 @@ const TodoList = () => {
       {/* Todo Items */}
       <div className="space-y-3 mb-6">
         {[1, 2, 3, 4].map((todo, index) => (
-          <div
-            key={index}
-            className="flex flex-col gap-6 rounded-xl border border-slate-200  p-4 hover:shadow-md transition-shadow "
-          >
-            hello
-          </div>
+          <TodoItem key={index} />
         ))}
       </div>
-      TodoList
     </div>
   );
 };

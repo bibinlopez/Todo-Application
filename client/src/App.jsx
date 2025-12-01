@@ -8,9 +8,9 @@ import TodoList from "./components/TodoList";
 function App() {
   return (
     <main className="bg-gray-100 min-h-screen">
-      <div className="mx-auto w-full px-4 py-8 max-w-5xl">
+      <div className="mx-auto w-full px-4 py-20 max-w-5xl">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12 pl-1 pr-2">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-blue-600 rounded-xl  ">
