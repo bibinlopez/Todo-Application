@@ -14,15 +14,15 @@ import {
 } from "lucide-react";
 import React from "react";
 
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-slate-200  px-4 py-3 hover:shadow-md transition-shadow ">
       <div className="flex items-start justify-between gap-5 md:gap-10">
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-3">
             <div className="flex-1">
-              <h1 className="font-medium">hi</h1>
-              <h1>descriptin</h1>
+              <h1 className="font-medium">{todo.title}</h1>
+              <h1>{todo.description}</h1>
             </div>
             {/* <span>inprogress</span> */}
             <div className="badge badge-soft badge-primary badge-sm">
