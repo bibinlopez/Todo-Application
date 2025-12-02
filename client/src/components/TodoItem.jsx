@@ -21,13 +21,24 @@ const TodoItem = ({ todo }) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-3">
             <div className="flex-1">
-              <h1 className="font-medium">{todo.title}</h1>
-              <h1>{todo.description}</h1>
+              <h1 className="font-medium text-md pb-1">{todo.title}</h1>
+              <h1 className="text-xs">{todo.description}</h1>
             </div>
-            {/* <span>inprogress</span> */}
-            <div className="badge badge-soft badge-primary badge-sm">
-              Primary
-            </div>
+
+            {todo.status === "pending" ? (
+              <div className="badge badge-soft badge-primary badge-sm">
+                Pending
+              </div>
+            ) : todo.status === "completed" ? (
+              <div className="badge badge-soft badge-success badge-sm">
+                Completed
+              </div>
+            ) : (
+              <div className="badge badge-soft badge-warning badge-sm">
+                Progress
+              </div>
+            )}
+
             {/* <div class="badge badge-soft badge-success">Success</div>
 <div class="badge badge-soft badge-warning">Warning</div> */}
           </div>
