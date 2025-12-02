@@ -6,6 +6,8 @@ import { Plus, ListTodo } from "lucide-react";
 import TodoList from "./components/TodoList";
 import Modal from "./components/Modal";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,11 +15,13 @@ function App() {
   const [page, setPage] = useState(1);
   const limit = 6;
 
-  const url = `http://localhost:4000/todo?page=${page}&limit=${limit}`;
+  const [refreshPage, setRefreshPage] = useState(false);
+
+  const fetchUrl = `http://localhost:4000/todo?page=${page}&limit=${limit}`;
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(fetchUrl);
         const todos = data?.data;
         setTodos(todos);
       } catch (err) {
@@ -25,41 +29,48 @@ function App() {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, refreshPage]);
 
   return (
-    <main className="bg-gray-100 min-h-screen">
-      <div className="mx-auto px-14 w-full px-4 pt-12 pb-2 max-w-5xl">
-        {/* Header */}
-        <div className="mb-10 pl-1 pr-2">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-blue-600 rounded-xl  ">
-                <ListTodo className="size-8 text-white" />
+    <>
+      <Toaster />
+      <main className="bg-gray-100 min-h-screen">
+        <div className="mx-auto px-14 w-full px-4 pt-12 pb-2 max-w-5xl">
+          {/* Header */}
+          <div className="mb-10 pl-1 pr-2">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-blue-600 rounded-xl  ">
+                  <ListTodo className="size-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-medium text-slate-900">
+                    Todo Application
+                  </h1>
+                </div>
               </div>
               <div>
-                <h1 className="text-2xl font-medium text-slate-900">
-                  Todo Application
-                </h1>
+                <button
+                  className="flex btn btn-neutral rounded-md font-semibold w-30 justify-between px-3 text-white"
+                  onClick={() => setIsOpen(true)}
+                >
+                  <Plus />
+                  Add Todo
+                </button>
               </div>
             </div>
-            <div>
-              <button
-                className="flex btn btn-neutral rounded-md font-semibold w-30 justify-between px-3 text-white"
-                onClick={() => setIsOpen(true)}
-              >
-                <Plus />
-                Add Todo
-              </button>
-            </div>
           </div>
+          {/* Todo List  */}
+          <TodoList todos={todos} page={page} setPage={setPage} limit={limit} />
+          {/* Modal  */}
+          <Modal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            setRefreshPage={setRefreshPage}
+          />
         </div>
-        {/* Todo List  */}
-        <TodoList todos={todos} page={page} setPage={setPage} limit={limit} />
-        {/* Modal  */}
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
-      </div>
-    </main>
+      </main>
+    </>
   );
 }
 

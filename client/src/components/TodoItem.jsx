@@ -38,17 +38,9 @@ const TodoItem = ({ todo }) => {
                 Progress
               </div>
             )}
-
-            {/* <div class="badge badge-soft badge-success">Success</div>
-<div class="badge badge-soft badge-warning">Warning</div> */}
           </div>
-          {/* <div className="flex items-center gap-1">date</div> */}
         </div>
         <div className="flex justify-around w-20 md:w-30 pt-2">
-          {/* <Trash className="text-red-600" />
-          <Trash2 /> */}
-          {/* <TrashIcon /> */}
-
           <div className="w-6 h-6 pt-[1px]">
             <EditIcon className="text-blue-500" />
           </div>
