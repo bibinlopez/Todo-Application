@@ -26,10 +26,14 @@ export class TodoService {
     return responseObj;
   }
 
-  findAll({ page, limit }) {
-    const skip = +page || 1 * +limit || 5;
-    const result = data.slice(skip, limit + skip);
-    const responseObj = { success: true, data: result, count: result.length };
+  findAll({ page, limit }: { page: number; limit: number }) {
+    const skip = (page - 1) * limit;
+    console.log(skip, limit);
+
+    const result = data.slice(skip, skip + limit);
+    console.log({ data });
+
+    const responseObj = { success: true, count: result.length, data: result };
     return responseObj;
   }
 

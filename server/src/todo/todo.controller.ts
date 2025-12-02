@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
@@ -20,9 +21,10 @@ export class TodoController {
     return this.todoService.create(createTodoDto);
   }
 
-  @Get('all/:page/:limit')
-  findAll(@Param('page') page: string, @Param('limit') limit: string) {
-    return this.todoService.findAll({ page, limit });
+  @Get()
+  findAll(@Query('page') page: string, @Query('limit') limit: string) {
+    const query = { page: Number(page) || 1, limit: Number(limit) || 10 };
+    return this.todoService.findAll(query);
   }
 
   @Get(':id')
