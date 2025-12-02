@@ -7,9 +7,14 @@ import TodoList from "./components/TodoList";
 import Modal from "./components/Modal";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import TodoModal from "./components/TodoModal";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
+  const [editTodoData, setEditTodoData] = useState({});
 
   const [todos, setTodos] = useState([]);
   const [page, setPage] = useState(1);
@@ -52,7 +57,7 @@ function App() {
               <div>
                 <button
                   className="flex btn btn-neutral rounded-md font-semibold w-30 justify-between px-3 text-white"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => setAddModalOpen(true)}
                 >
                   <Plus />
                   Add Todo
@@ -67,12 +72,31 @@ function App() {
             setPage={setPage}
             limit={limit}
             setRefreshPage={setRefreshPage}
+            setEditTodoData={setEditTodoData}
+            setIsOpen={setEditModalOpen}
           />
           {/* Modal  */}
-          <Modal
+          {/* <Modal
             isOpen={isOpen}
             setIsOpen={setIsOpen}
             setRefreshPage={setRefreshPage}
+          /> */}
+          <TodoModal
+            isOpen={addModalOpen}
+            setIsOpen={setAddModalOpen}
+            setRefreshPage={setRefreshPage}
+            title={"Create New Todo"}
+            btnName={"Create"}
+            edit={false}
+          />
+          <TodoModal
+            isOpen={editModalOpen}
+            setIsOpen={setEditModalOpen}
+            setRefreshPage={setRefreshPage}
+            title={"Edit Todo"}
+            btnName={"Edit"}
+            edit={true}
+            data={editTodoData}
           />
         </div>
       </main>

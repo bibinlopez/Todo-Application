@@ -16,7 +16,7 @@ import {
 import React from "react";
 import toast from "react-hot-toast";
 
-const TodoItem = ({ todo, setRefreshPage }) => {
+const TodoItem = ({ todo, setRefreshPage, setEditTodoData, setIsOpen }) => {
   const handleDelete = async (id) => {
     const deleteUrl = `http://localhost:4000/todo/${id}`;
     try {
@@ -56,7 +56,18 @@ const TodoItem = ({ todo, setRefreshPage }) => {
           </div>
         </div>
         <div className="flex justify-around w-20 md:w-30 pt-2">
-          <div className="w-6 h-6 pt-[1px] curson-pointer">
+          <div
+            className="w-6 h-6 pt-[1px] curson-pointer"
+            onClick={() => {
+              setEditTodoData({
+                title: todo.title,
+                description: todo.description,
+                status: todo.status,
+                id: todo.id,
+              });
+              setIsOpen((preState) => !preState);
+            }}
+          >
             <EditIcon className="text-blue-500" />
           </div>
           <div onClick={() => handleDelete(todo.id)}>
