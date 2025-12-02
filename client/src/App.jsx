@@ -61,7 +61,13 @@ function App() {
             </div>
           </div>
           {/* Todo List  */}
-          <TodoList todos={todos} page={page} setPage={setPage} limit={limit} />
+          <TodoList
+            todos={todos}
+            page={page}
+            setPage={setPage}
+            limit={limit}
+            setRefreshPage={setRefreshPage}
+          />
           {/* Modal  */}
           <Modal
             isOpen={isOpen}

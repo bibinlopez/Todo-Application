@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-const TodoList = ({ todos, page, setPage, limit }) => {
+const TodoList = ({ todos, page, setPage, limit, setRefreshPage }) => {
   const prevBtnDisable = page === 1 ? true : false;
   const nextBtnDisable = todos.length < limit ? true : false;
 
@@ -10,7 +10,7 @@ const TodoList = ({ todos, page, setPage, limit }) => {
       {/* Todo Items */}
       <div className="space-y-3 mb-6">
         {todos.map((todo, index) => (
-          <TodoItem key={todo.id} todo={todo} />
+          <TodoItem key={todo.id} todo={todo} setRefreshPage={setRefreshPage} />
         ))}
       </div>
       {/* Pagination  */}

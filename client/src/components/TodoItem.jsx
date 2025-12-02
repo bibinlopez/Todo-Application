@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   Delete,
   DeleteIcon,
@@ -13,8 +14,22 @@ import {
   TrashIcon,
 } from "lucide-react";
 import React from "react";
+import toast from "react-hot-toast";
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, setRefreshPage }) => {
+  const handleDelete = async (id) => {
+    const deleteUrl = `http://localhost:4000/todo/${id}`;
+    try {
+      await axios.delete(deleteUrl);
+
+      setRefreshPage((preState) => !preState);
+
+      toast.success("Todo Removed");
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-6 rounded-xl border border-slate-200  px-4 py-3 hover:shadow-md transition-shadow ">
       <div className="flex items-start justify-between gap-5 md:gap-10">
@@ -41,11 +56,11 @@ const TodoItem = ({ todo }) => {
           </div>
         </div>
         <div className="flex justify-around w-20 md:w-30 pt-2">
-          <div className="w-6 h-6 pt-[1px]">
+          <div className="w-6 h-6 pt-[1px] curson-pointer">
             <EditIcon className="text-blue-500" />
           </div>
-          <div>
-            <Trash2Icon className="text-red-500" />
+          <div onClick={() => handleDelete(todo.id)}>
+            <Trash2Icon className="text-red-500 cursor-pointer" />
           </div>
         </div>
       </div>
