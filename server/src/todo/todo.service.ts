@@ -28,10 +28,8 @@ export class TodoService {
 
   findAll({ page, limit }: { page: number; limit: number }) {
     const skip = (page - 1) * limit;
-    console.log(skip, limit);
 
     const result = data.slice(skip, skip + limit);
-    console.log({ data });
 
     const responseObj = { success: true, count: result.length, data: result };
     return responseObj;
@@ -67,6 +65,7 @@ export class TodoService {
       throw new NotFoundException('No Todo item found');
     }
     data.splice(todoIndex, 1);
-    return;
+
+    return { success: true, message: 'Todo removed...' };
   }
 }
