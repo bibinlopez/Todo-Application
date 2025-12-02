@@ -25,7 +25,7 @@ const TodoModal = ({
     setTodo({ ...todo, [e.target.name]: e.target.value });
   };
 
-  const addUrl = `http://localhost:4000/todo`;
+  const addUrl = `${import.meta.env.VITE_BASE_API_URL}/todo`;
 
   const handleAdd = async () => {
     try {
@@ -42,7 +42,7 @@ const TodoModal = ({
   };
 
   const handleEdit = async (id) => {
-    const editUrl = `http://localhost:4000/todo/${id}`;
+    const editUrl = `${import.meta.env.VITE_BASE_API_URL}/todo/${id}`;
     try {
       const { data } = await axios.put(editUrl, todo);
 

@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 
 const TodoItem = ({ todo, setRefreshPage, setEditTodoData, setIsOpen }) => {
   const handleDelete = async (id) => {
-    const deleteUrl = `http://localhost:4000/todo/${id}`;
+    const deleteUrl = `${import.meta.env.VITE_BASE_API_URL}/todo/${id}`;
     try {
       await axios.delete(deleteUrl);
 

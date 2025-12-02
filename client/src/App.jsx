@@ -22,7 +22,9 @@ function App() {
 
   const [refreshPage, setRefreshPage] = useState(false);
 
-  const fetchUrl = `http://localhost:4000/todo?page=${page}&limit=${limit}`;
+  const fetchUrl = `${
+    import.meta.env.VITE_BASE_API_URL
+  }/todo?page=${page}&limit=${limit}`;
   useEffect(() => {
     const fetchData = async () => {
       try {
